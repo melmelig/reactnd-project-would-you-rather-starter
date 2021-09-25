@@ -72,7 +72,7 @@ onValueChange(answer) {
       <div>
         Selected option is : {this.state.selectedAnswer}
       </div>
-      <button className="btn btn-default" type="submit">
+      <button className="btn btn-default" disabled = {this.state.selectedAnswer === ''} type="submit">
         Submit
       </button>
     </form>

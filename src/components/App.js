@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route , Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './Dashboard'
@@ -10,6 +10,7 @@ import Nav from './Nav'
 import LoginPage from './LoginPage'
 import { setAuthedUser } from '../actions/authedUser'
 import LeaderBoard from './LeaderBoard'
+import Error404 from './Error404'
 
 class App extends Component {
   componentDidMount() {
@@ -37,11 +38,14 @@ class App extends Component {
                 <div>
                   Logged user: <strong>{authedUser}</strong>
                 </div>
+                <Switch>
                   <Route path='/' exact component={Dashboard} />
                   <Route path='/new' component={NewQuestion} />
 
                   <Route path='/question/:id' component={QuestionPage} />
                   <Route path='/leaderboard' component={LeaderBoard} />
+                  <Route  component={Error404} />
+                  </Switch>
                    <button
 					className='btn'
 					

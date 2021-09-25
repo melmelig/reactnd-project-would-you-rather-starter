@@ -42,12 +42,16 @@ filterQuestions = (DefaultView) => {
       
           <div>
            
-           <strong>answered questions</strong> {Object.keys(users[user].answers).length}
+           <strong>Answered questions</strong> {Object.keys(users[user].answers).length}
        
           </div>
           
           <div>
-           <strong>unanswered questions </strong> {questionsNum - Object.keys(users[user].answers).length}
+           <strong>Unanswered questions </strong> {questionsNum - Object.keys(users[user].answers).length}
+          </div>
+
+          <div>
+           <strong>Asked questions </strong> { Object.keys(users[user].questions).length}
           </div>
 
       
