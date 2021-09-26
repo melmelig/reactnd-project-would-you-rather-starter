@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import Question from './Question'
 import {handleAddAnswer} from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class QuestionPage extends Component {
 
@@ -29,6 +30,11 @@ onValueChange(answer) {
   render() {
     const { id, questions,authedUser } = this.props
     const question = questions[id]
+    
+	if(!question)
+	{
+		return <Redirect to='/Error' />
+	}
     const isAnswered = 
    ( question.optionOne.votes.indexOf(authedUser) > -1 ||
                 question.optionTwo.votes.indexOf(authedUser) > -1)
