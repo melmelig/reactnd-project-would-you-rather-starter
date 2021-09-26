@@ -18,42 +18,56 @@ filterQuestions = (DefaultView) => {
     const userIds = Object.keys(users)
 
     const questionsNum = Object.keys(questions).length
-  
+    let leaderboard = [];
+
+    Object.values(users).map((user) =>
+    leaderboard.push({
+    id: user.id,
+    avatarURL: user.avatarURL,
+    name: user.name,
+    questions: user.questions.length,
+    answers: Object.keys(user.answers).length,
+    score: user.questions.length + Object.keys(user.answers).length,
+    }),
+    );
+    leaderboard.sort((a, b) => b.score - a.score);
     return (
+      
       <div>
         
         <h3 className='center'>Leader Board</h3>
 
          <ul className='dashboard-list'>
            
-          {userIds.map((user) => (
-            <li key={user}>
+          {leaderboard.map((user) => (
+            <li key={user.id}>
              
                <div  className='tweet'>
         <img
-          src={users[user].avatarURL}
-          alt={`Avatar of ${users[user].name}`}
+          src={user.avatarURL}
+          alt={`Avatar of ${user.name}`}
           className='avatar'
         />
         <div className='tweet-info'>
           <div>
-            <div>{users[user].name}</div>
+            <div>{user.name}</div>
           </div>
       
           <div>
            
-           <strong>Answered questions</strong> {Object.keys(users[user].answers).length}
+           <strong>Answered questions</strong> {user.answers}
        
           </div>
           
           <div>
-           <strong>Unanswered questions </strong> {questionsNum - Object.keys(users[user].answers).length}
+           <strong>Unanswered questions </strong> {questionsNum -user.answers}
           </div>
 
           <div>
-           <strong>Asked questions </strong> { Object.keys(users[user].questions).length}
+           <strong>Asked questions </strong> {user.questions}
           </div>
-
+          <div>
+             <strong>Score (questions asked + questions answered): </strong> {user.score}</div> 
       
         </div>
       </div>

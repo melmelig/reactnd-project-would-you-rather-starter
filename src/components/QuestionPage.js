@@ -49,7 +49,7 @@ onValueChange(answer) {
         { (isAnswered === false)?(
         
         <form onSubmit={(e) => {this.formSubmit(e)}} className='new-tweet'>
-           anything
+
     
       <div className="radio">
         <label>
